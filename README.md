@@ -88,7 +88,7 @@ give read/write priviliges to these directories
 `hadoop fs -chmod 777 /user/hive`
 `hadoop fs -chmod 777 /user/hive/warehouse`
 
-5. Finally run hive using `hive` command.
+5. Finally run hive using `hive` command
 If you run get into errors it is mostly because hive cannot connect to the metastore database(due to schema problems). I recommend creating the schema manually before running hive for the first time. In `hive\scripts\metastore\` there are schemas for the metastore database.Since I am using mysql for the metastore I created a metastore database and run the schema for `hive-schema-2.1.0.mysql` against the database. Also the TXN tables are required to hold transaction information(To support database transactions in hive ). I run the `hive-txn-schema-2.1.0.mysql` against the database.
 
 With all these done hive is guaranteed to run on your machine.
