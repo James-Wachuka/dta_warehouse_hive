@@ -5,7 +5,7 @@ Hive is a great tool for analysis of data. Hive runs on hadoop and therefore uti
 3. Facts are measures of the analytic model created fromm the sun model. Example of measure would be customer count.
 4. Check that the dimensions have the correct type of business needs(does it address the SCDS:type 0;type 1,type 2,type 3,outriggers,fast-changing,etc).
 
-A *sun model* is an abstract representation of our business for which we'll implement an analytic model.
+A *sun model* is an abstract representation of our business for which we'll implement an analytic model
 
 ###### Structure of the warehouse
 1. A retrieve database for collecting data and storing for the business. All the data from different sources is stored here.
