@@ -25,7 +25,7 @@ NOTE: some hive realeases do not the windows executables, I  recommend hive-2.1.
 `HIVE_LIB` as `C:\hadoop-2.9.2\hive\lib`
 add to the path variable `C:\hadoop-2.9.2\hive\bin`,`C:\hadoop-2.9.2\hive\lib`
 
-edit hive-site.mxl as depending on the metastore database(I used mysql)
+edit hive-site.mxl depending on the metastore database(I used mysql)
 `<configuration>
 <!-- database connections -->
 <property>
