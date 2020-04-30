@@ -26,7 +26,9 @@ NOTE: some hive realeases do not contain the windows executables, I  recommend h
 add to the path variable `C:\hadoop-2.9.2\hive\bin`,`C:\hadoop-2.9.2\hive\lib`
 
 edit hive-site.mxl depending on the metastore database(I used mysql)
-```<configuration>
+
+```
+<configuration>
 <!-- database connections -->
 <property>
 <name>javax.jdo.option.ConnectionURL</name>
@@ -77,16 +79,24 @@ property>
 <name>hive.compactor.worker.threads</name>
 <value>10</value>
 </property>
-</configuration>```
+</configuration>
+```
+
+
 
 4. Create directory for hive warehouse in hadoop. Start hadoop daemons and run the following commands.First you have to leave hadoop safemode using `hadoop dfsadmin -safemode leave`
-`hadoop fs -mkdir /tmp`
-`hadoop fs -mkdir /user/hive`
-`hadoop fs -mkdir /user/hive/warehouse`
+```
+hadoop fs -mkdir /tmp
+hadoop fs -mkdir /user/hive
+hadoop fs -mkdir /user/hive/warehouse
+```
+
 give read/write priviliges to these directories
-`hadoop fs -chmod 777 /tmp`
-`hadoop fs -chmod 777 /user/hive`
-`hadoop fs -chmod 777 /user/hive/warehouse`
+```
+hadoop fs -chmod 777 /tmp
+hadoop fs -chmod 777 /user/hive
+hadoop fs -chmod 777 /user/hive/warehouse
+```
 
 5. Finally run hive using `hive` command
 If you run get into errors it is mostly because hive cannot connect to the metastore database(due to schema problems). I recommend creating the schema manually before running hive for the first time. In `hive\scripts\metastore\` there are schemas for the metastore database.Since I am using mysql for the metastore I created a metastore database and run the schema for `hive-schema-2.1.0.mysql` against the database. Also the TXN tables are required to hold transaction information(To support database transactions in hive ). I run the `hive-txn-schema-2.1.0.mysql` against the database.
