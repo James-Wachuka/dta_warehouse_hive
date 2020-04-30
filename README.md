@@ -26,7 +26,7 @@ NOTE: some hive realeases do not contain the windows executables, I  recommend h
 add to the path variable `C:\hadoop-2.9.2\hive\bin`,`C:\hadoop-2.9.2\hive\lib`
 
 edit hive-site.mxl depending on the metastore database(I used mysql)
-`<configuration>
+```<configuration>
 <!-- database connections -->
 <property>
 <name>javax.jdo.option.ConnectionURL</name>
@@ -77,7 +77,7 @@ property>
 <name>hive.compactor.worker.threads</name>
 <value>10</value>
 </property>
-</configuration>`
+</configuration>```
 
 4. Create directory for hive warehouse in hadoop. Start hadoop daemons and run the following commands.First you have to leave hadoop safemode using `hadoop dfsadmin -safemode leave`
 `hadoop fs -mkdir /tmp`
