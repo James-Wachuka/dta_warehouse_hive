@@ -15,8 +15,7 @@ A *sun model* is an abstract representation of our business for which we'll impl
 4. Transform database will hold the analytic model(consisting of facts and dimensions)
 
 ###### Tools 
-*hive* is an  important tool for this project and therefore it should be installed  and configured accordingly. I will give a step by step guide to get hive running on your machine. I assume that hadoop is installed and running on your machine. refer here - http://github.com/jewachu/hadoop_on_windows
-1. donwload a stable version from http://hive.apache.org/releases.html preferably verion 2 and above for hadoop-2.7+
+*hive* -  donwload a stable version from http://hive.apache.org/releases.html preferably verion 2 and above for hadoop-2.7+
 NOTE: some hive realeases do not contain the windows executables, I  recommend hive-2.1.1
 2. unzip the file and place the contents in your preffered location. I used `C:\hadoop-2.9.2\hive`
 3. set up user variables:
@@ -84,7 +83,7 @@ property>
 
 
 
-4. Create directory for hive warehouse in hadoop. Start hadoop daemons and run the following commands.First you have to leave hadoop safemode using `hadoop dfsadmin -safemode leave`
+4. Create directory for hive warehouse in hadoop. Start hadoop daemons and run the following . leave hadoop safemode using `hadoop dfsadmin -safemode leave`
 ```
 hadoop fs -mkdir /tmp
 hadoop fs -mkdir /user/hive
@@ -99,21 +98,19 @@ hadoop fs -chmod 777 /user/hive/warehouse
 ```
 
 5. Finally run hive using `hive` command
-If you run get into errors it is mostly because hive cannot connect to the metastore database(due to schema problems). I recommend creating the schema manually before running hive for the first time. In `hive\scripts\metastore\` there are schemas for the metastore database.Since I am using mysql for the metastore I created a metastore database and run the schema for `hive-schema-2.1.0.mysql` against the database. Also the TXN tables are required to hold transaction information(To support database transactions in hive ). I run the `hive-txn-schema-2.1.0.mysql` against the database.
-
-With all these done hive is guaranteed to run on your machine.
+If you run get into errors (hive cannot connect to the metastore database-due to schema problems),  Create the schema manually before running hive for the first time. In `hive\scripts\metastore\` there are schemas for the metastore database.Using mysql for the metastore I created a metastore database and run the schema for `hive-schema-2.1.0.mysql` against the database. Also the TXN tables are required to hold transaction information(To support database transactions in hive ). Run the `hive-txn-schema-2.1.0.mysql` against the database.
 
 ###### Files
-I have included some csv files for experimentation with the warehouse.These files hold the data for building the warehouse.However feel free to use custom files or agents such as *sqoop* or *flume* to get some data into your databases.Since I am using hive scripts to build the warehouse I have included all the scripts for implementing the complete data warehouse.
+csv files for experimentation with the warehouse.These files hold the data for building the warehouse.you can use custom files or agents such as *sqoop* or *flume* to get some data into your databases.Included are all the scripts for implementing the complete data warehouse.
 
 ###### execution
-Use `hive -f example.hql` to run the hive scripts containing hive code.This is simpler than typing the entire code on a hive prompt also it is easier for debugging. You can execute hive commands using hive prompt, using `hive` command. Key to note that the two modes of execution can not exist at the same time.
+run `hive -f example.hql` for executing hive scripts containing hive code (easier for debugging). Or using hive prompt `hive` command.Two modes of execution can not exist at the same time.
 
 ###### what next
-On completion of this example, you should create some data marts(aggregations of the analytic model) for  easy reporting and analysis.
+create some data marts(aggregations of the analytic model) for  easy reporting and analysis.
 
 ###### optimization:
-These few configs will enhance performnace of hive.Hive by default uses mapreduce as its execution engine, using Tez will improve execution time
+Hive by default uses mapreduce as its execution engine, using Tez will improve execution time
 using Tez as execution engine for hive set the following properties:
 `<property>
 <name>hive.execution.engine</name>
